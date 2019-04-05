@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/4 | Hexo</title>
+  <title>Java知识点总结（三） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/04/index.html">
+  <meta name="description" content="Java知识点总结（三）时间对象和字符串之间的互相转换 把时间对象按照指定格式转换成相应的字符串  123DateFormat df=new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss&quot;);String str=df.format(new Date(4000000));System.out.println(str); 此时输出就是按照自己用“y,M,d,h,s”等字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java知识点总结（三）">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/Java知识点总结（三）/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java知识点总结（三）时间对象和字符串之间的互相转换 把时间对象按照指定格式转换成相应的字符串  123DateFormat df=new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss&quot;);String str=df.format(new Date(4000000));System.out.println(str); 此时输出就是按照自己用“y,M,d,h,s”等字">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-05T14:05:56.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Java知识点总结（三）">
+<meta name="twitter:description" content="Java知识点总结（三）时间对象和字符串之间的互相转换 把时间对象按照指定格式转换成相应的字符串  123DateFormat df=new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss&quot;);String str=df.format(new Date(4000000));System.out.println(str); 此时输出就是按照自己用“y,M,d,h,s”等字">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -140,76 +144,160 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Java知识点总结（三）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java知识点总结（三）
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/05/Java知识点总结（三）/" class="archive-article-date">
+
+        
+        <a href="/2019/04/05/Java知识点总结（三）/" class="archive-article-date">
   	<time datetime="2019-04-05T13:47:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/05/Java知识点总结（三）/">Java知识点总结（三）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java知识点总结（三）"><a href="#Java知识点总结（三）" class="headerlink" title="Java知识点总结（三）"></a>Java知识点总结（三）</h1><h2 id="时间对象和字符串之间的互相转换"><a href="#时间对象和字符串之间的互相转换" class="headerlink" title="时间对象和字符串之间的互相转换"></a>时间对象和字符串之间的互相转换</h2><ul>
+<li>把时间对象按照指定格式转换成相应的字符串</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DateFormat df=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">String str=df.format(<span class="keyword">new</span> Date(<span class="number">4000000</span>));</span><br><span class="line">System.out.println(str);</span><br></pre></td></tr></table></figure>
+<p>此时输出就是按照自己用“y,M,d,h,s”等字母所指定的时间格式</p>
+<ul>
+<li>把字符串按照相应的格式转成相应的时间对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DateFormat df2=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日 hh时mm分ss秒"</span>);</span><br><span class="line">Date date=df2.parse(<span class="string">"1983年06月03日 21时34分33秒"</span>);</span><br><span class="line">System.out.println(date);</span><br></pre></td></tr></table></figure>
+<p>此时输出结果为<code>Fri Jun 03 21:34:33 GMT+08:00 1983</code>，通过<code>parse()</code>方法可以按指定格式将输入的字符串解析为时间对象。</p>
+<h2 id="随机数Random类"><a href="#随机数Random类" class="headerlink" title="随机数Random类"></a>随机数<code>Random</code>类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRandom</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Random rand=<span class="keyword">new</span> Random();</span><br><span class="line">		<span class="comment">//随机生成[0,1)之间的double类型的数据</span></span><br><span class="line">		System.out.println(rand.nextDouble());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成int类型允许范围之内的整形数据</span></span><br><span class="line">		System.out.println(rand.nextInt());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成[0,1)之间的float类型的数据</span></span><br><span class="line">		System.out.println(rand.nextFloat());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成false或者true</span></span><br><span class="line">		System.out.println(rand.nextBoolean());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成[0,10)之间的int类型的数据</span></span><br><span class="line">		System.out.println(rand.nextInt(<span class="number">10</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成[20,30)之间的int类型的数据</span></span><br><span class="line">		System.out.println(<span class="number">20</span>+rand.nextInt(<span class="number">10</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//随机生成[20,30)之间的int类型的数据（此种方法计算较为复杂）</span></span><br><span class="line">		System.out.println(<span class="number">20</span>+(<span class="keyword">int</span>)(rand.nextDouble()*<span class="number">10</span>));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="可变字符序列StringBuilder"><a href="#可变字符序列StringBuilder" class="headerlink" title="可变字符序列StringBuilder"></a>可变字符序列<code>StringBuilder</code></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStringBuilder2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		StringBuilder sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) &#123;</span><br><span class="line">			sb.append((<span class="keyword">char</span>)(<span class="string">'a'</span>+i));</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(sb);</span><br><span class="line">		</span><br><span class="line">		sb.reverse();<span class="comment">//倒序</span></span><br><span class="line">		System.out.println(sb);</span><br><span class="line">		sb.setCharAt(<span class="number">3</span>, <span class="string">'啦'</span>);</span><br><span class="line">		System.out.println(sb);</span><br><span class="line">		sb.insert(<span class="number">0</span>, <span class="string">'哦'</span>).insert(<span class="number">6</span>,<span class="string">'嗯'</span>).insert(<span class="number">10</span>, <span class="string">'啊'</span>);<span class="comment">//链式调用。核心就是该方法调用了return this,把自己返回</span></span><br><span class="line">		System.out.println(sb);</span><br><span class="line">		</span><br><span class="line">		sb.delete(<span class="number">20</span>,<span class="number">23</span>);</span><br><span class="line">		System.out.println(sb);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>append()</code>方法可以在其中添加元素。<code>reverse()</code>方法实现倒叙功能。<code>setCharAt()</code>可以设置指定位置的元素。<code>insert()</code>方法可以通过链式调用实现连续插入。<code>delete()</code>用法类似于<code>insert()</code>。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/05/Java知识点总结（三）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/04/Java知识点总结（二）/" class="archive-article-date">
-  	<time datetime="2019-04-04T13:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/04/Java知识点总结（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java知识点总结（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/04/Java知识点总结（二）/">Java知识点总结（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java知识点总结（三）"><span class="toc-number">1.</span> <span class="toc-text">Java知识点总结（三）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#时间对象和字符串之间的互相转换"><span class="toc-number">1.1.</span> <span class="toc-text">时间对象和字符串之间的互相转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机数Random类"><span class="toc-number">1.2.</span> <span class="toc-text">随机数Random类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变字符序列StringBuilder"><span class="toc-number">1.3.</span> <span class="toc-text">可变字符序列StringBuilder</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -232,8 +320,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
