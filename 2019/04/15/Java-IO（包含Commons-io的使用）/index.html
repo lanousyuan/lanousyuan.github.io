@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Java.IO（包含Commons-io的使用） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="IO流相关知识输入字节流InputStream，输出字节流OutputStream，字符输入流Reader，字符输出流Writer等等，走进IO流的世界。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java.IO（包含Commons-io的使用）">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/Java-IO（包含Commons-io的使用）/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IO流相关知识输入字节流InputStream，输出字节流OutputStream，字符输入流Reader，字符输出流Writer等等，走进IO流的世界。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-15T14:43:06.857Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Java.IO（包含Commons-io的使用）">
+<meta name="twitter:description" content="IO流相关知识输入字节流InputStream，输出字节流OutputStream，字符输入流Reader，字符输出流Writer等等，走进IO流的世界。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -140,16 +144,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Java-IO（包含Commons-io的使用）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Java-IO（包含Commons-io的使用）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/Java-IO（包含Commons-io的使用）/">Java.IO（包含Commons-io的使用）</a>
+    <h1 class="article-title" itemprop="name">
+      Java.IO（包含Commons-io的使用）
     </h1>
   
 
@@ -163,9 +165,56 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="IO流相关知识"><a href="#IO流相关知识" class="headerlink" title="IO流相关知识"></a>IO流相关知识</h1><p>输入字节流<code>InputStream</code>，输出字节流<code>OutputStream</code>，字符输入流<code>Reader</code>，字符输出流<code>Writer</code>等等，走进IO流的世界。</p>
-        
-          <a class="article-more-a" href="/2019/04/15/Java-IO（包含Commons-io的使用）/#more">more >></a>
-        
+<a id="more"></a>
+<h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">File src=<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO/src/zy/io/lanous1.png"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"名称："</span>+src.getName());</span><br><span class="line">System.out.println(<span class="string">"路径："</span>+src.getPath());</span><br><span class="line">System.out.println(<span class="string">"绝对路径："</span>+src.getAbsolutePath());</span><br><span class="line">System.out.println(<span class="string">"父路径："</span>+src.getParent());</span><br><span class="line">System.out.println(<span class="string">"父对象："</span>+src.getParentFile().getName());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建目录</li>
+</ul>
+<p><code>mkdir()</code>必须确保上级目录存在，<code>mkdies()</code>上次目录可以不存在，会一起创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">File dir=<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO/dir/test"</span>);</span><br><span class="line"><span class="comment">//创建目录,mkdirs()</span></span><br><span class="line">dir.mkdirs();</span><br><span class="line"></span><br><span class="line"><span class="comment">//列出下级名称</span></span><br><span class="line">String[] subNames=dir.list();</span><br><span class="line"><span class="keyword">for</span>(String temp:subNames) &#123;</span><br><span class="line">	System.out.println(temp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//列出下级对象</span></span><br><span class="line">File[] subFiles=dir.listFiles();</span><br><span class="line"><span class="keyword">for</span>(File s:subFiles) &#123;</span><br><span class="line">	System.out.println(s.getAbsolutePath());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="流的操作"><a href="#流的操作" class="headerlink" title="流的操作"></a>流的操作</h2><ul>
+<li>程序中可以分为四步：（一）创建源、（二）选择流、（三）操作、（四）释放流</li>
+</ul>
+<p>1、字节输入流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建源</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"abc.txt"</span>);</span><br><span class="line"><span class="comment">//选择流</span></span><br><span class="line">InputStream is=<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	is=<span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//操作（分段读取）</span></span><br><span class="line">	<span class="keyword">byte</span>[] flush=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">100</span>];<span class="comment">//缓冲容器</span></span><br><span class="line">	<span class="keyword">int</span> len=-<span class="number">1</span>;<span class="comment">//接收长度</span></span><br><span class="line">	<span class="keyword">while</span>((len=is.read(flush))!=-<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">//字节数组--》字符串</span></span><br><span class="line">		String s=<span class="keyword">new</span> String(flush,<span class="number">0</span>,len);</span><br><span class="line">		System.out.println(s);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">	<span class="comment">//释放资源</span></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">null</span>!=is) &#123;</span><br><span class="line">			is.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字节输出流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建源</span></span><br><span class="line">File dest=<span class="keyword">new</span> File(<span class="string">"yuan.txt"</span>);</span><br><span class="line"><span class="comment">//选择流</span></span><br><span class="line">OutputStream os =<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">//操作（写出）</span></span><br><span class="line">	os=<span class="keyword">new</span> FileOutputStream(dest,<span class="keyword">false</span>);<span class="comment">//false为重写文件内容，true为文件尾部追加</span></span><br><span class="line">	String msg=<span class="string">"let fire brun everything"</span>;</span><br><span class="line">	<span class="keyword">byte</span>[] datas=msg.getBytes();<span class="comment">//编码</span></span><br><span class="line">	os.write(datas,<span class="number">0</span>,datas.length);</span><br><span class="line">	os.flush();</span><br><span class="line">&#125;<span class="keyword">catch</span>(FileNotFoundException e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">	<span class="comment">//释放资源</span></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> != os) &#123;</span><br><span class="line">			os.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、字符输入流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//操作</span></span><br><span class="line"><span class="keyword">char</span>[] flush=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">int</span> len=-<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>((len=r.read(flush))!=-<span class="number">1</span>)&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//字符数组--》字符串</span></span><br><span class="line">	String s=<span class="keyword">new</span> String(flush,<span class="number">0</span>,len);</span><br><span class="line">	System.out.println(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字符输出流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写法一</span></span><br><span class="line">String msg=<span class="string">"never run away yuan"</span>;</span><br><span class="line">wr.write(msg);</span><br><span class="line">wr.flush();</span><br><span class="line"></span><br><span class="line"><span class="comment">//写法二</span></span><br><span class="line">wr.append(<span class="string">"never run away"</span>).append(<span class="string">"yuan"</span>);</span><br><span class="line">wr.flush();</span><br></pre></td></tr></table></figure>
+<p>创建源、选择流、释放操作与字节输出流和字节输入流类似，修改类名即可。</p>
+<p>3、字节数组输出流</p>
+<p><code>ByteArrayOutputStream()</code>内的<code>close()</code>为空方法，可有可无。</p>
+<p>当子类需要使用新增方法时无法发生多态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建流</span></span><br><span class="line"><span class="keyword">byte</span>[] dest=<span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//选择流（新增方法）（无法使用多态）</span></span><br><span class="line">ByteArrayOutputStream baos=<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	baos=<span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">	<span class="comment">//操作</span></span><br><span class="line">	String msg=<span class="string">"to be number one"</span>;</span><br><span class="line">	<span class="keyword">byte</span>[] datas=msg.getBytes();<span class="comment">//字符串--》字节数组（编码）</span></span><br><span class="line">	baos.write(datas, <span class="number">0</span>, datas.length);</span><br><span class="line">	baos.flush();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//获取数据</span></span><br><span class="line">	dest=baos.toByteArray();</span><br><span class="line">	System.out.println(dest.length+<span class="string">"--&gt;"</span>+<span class="keyword">new</span> String(dest,<span class="number">0</span>,baos.size()));</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字节数组输入流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建流</span></span><br><span class="line"><span class="keyword">byte</span>[] src=<span class="string">"to be number one"</span>.getBytes();</span><br><span class="line"><span class="comment">//选择流</span></span><br><span class="line">InputStream is=<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	is=<span class="keyword">new</span> ByteArrayInputStream(src);</span><br><span class="line">	<span class="comment">//操作</span></span><br><span class="line">	<span class="keyword">byte</span>[] flush=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">5</span>];<span class="comment">//缓冲容器</span></span><br><span class="line">	<span class="keyword">int</span> len=-<span class="number">1</span>;<span class="comment">//接收长度</span></span><br><span class="line">	<span class="keyword">while</span>((len=is.read(flush))!=-<span class="number">1</span>) &#123;</span><br><span class="line">		String s=<span class="keyword">new</span> String(flush,<span class="number">0</span>,len);</span><br><span class="line">		System.out.println(s);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用文件字节输入、输出流实现文件的拷贝。</li>
+</ul>
+<p>即对文件先读取再写出。实现方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传入源地址和目标地址即可</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copy</span><span class="params">(String srcPath,String destPath)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建源</span></span><br><span class="line">		File src=<span class="keyword">new</span> File(srcPath);</span><br><span class="line">		File dest=<span class="keyword">new</span> File(destPath);</span><br><span class="line">		<span class="comment">//选择流</span></span><br><span class="line">		OutputStream os =<span class="keyword">null</span>;</span><br><span class="line">		InputStream is=<span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			is=<span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">			os=<span class="keyword">new</span> FileOutputStream(dest);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//操作（分段读取）</span></span><br><span class="line">			<span class="keyword">byte</span>[] flush=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">			<span class="keyword">int</span> len=-<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span>((len=is.read(flush))!=-<span class="number">1</span>) &#123;</span><br><span class="line">				os.write(flush, <span class="number">0</span>, len);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span>(FileNotFoundException e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//释放资源，，分别关闭，先打开的后关闭</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">null</span> != os) &#123;</span><br><span class="line">					os.close();</span><br><span class="line">				&#125; </span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">null</span> != is) &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; </span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>4、字节输入缓冲流、字节输出缓冲流。字符输入缓冲流、字符输出缓冲流。</p>
+<p>修改如下选择流的程序即可，缓冲流可以提升一定的程序性能。这也是一种装饰设计模式的应用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">is=<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">os=<span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(dest));</span><br><span class="line"></span><br><span class="line">r= <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(src));</span><br><span class="line">w=<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(dest));</span><br></pre></td></tr></table></figure>
+<p>5、转换流</p>
+<p>在JDK1.7之后，释放流的操作可以简化为<code>try with resources</code>形式，在转换流中我们使用这种释放方式。</p>
+<p>可以不用进行finally操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//操作网络流,下载百度的源代码</span></span><br><span class="line"><span class="keyword">try</span>(BufferedReader r=<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> URL(<span class="string">"http://www.baidu.com"</span>).openStream(),<span class="string">"UTF-8"</span>));</span><br><span class="line">	BufferedWriter w=<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">"baidu.html"</span>),<span class="string">"UTF-8"</span>)))&#123;</span><br><span class="line">	<span class="comment">//操作</span></span><br><span class="line">	String temp;</span><br><span class="line">	<span class="keyword">while</span>((temp=r.readLine())!=<span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="comment">//System.out.println(temp);</span></span><br><span class="line">		w.write(temp);</span><br><span class="line">		w.newLine();</span><br><span class="line">	&#125;</span><br><span class="line">	w.flush();</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="装饰设计模式浅谈"><a href="#装饰设计模式浅谈" class="headerlink" title="装饰设计模式浅谈"></a>装饰设计模式浅谈</h2><p>需要拥有如下四个部分：</p>
+<ul>
+<li>抽象组件：需要装饰的抽象对象（接口或抽象父类）</li>
+<li>具体组件：需要装饰的对象</li>
+<li>抽象装饰类：包含了对抽象组件的引用以及装饰着共有的方法</li>
+<li>具体装饰类：被装饰的对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecoreatTest02</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Drink coffee=<span class="keyword">new</span> Coffee();</span><br><span class="line">		Drink suger=<span class="keyword">new</span> Suger(coffee);<span class="comment">//装饰</span></span><br><span class="line">		System.out.println(suger.info()+<span class="string">"---"</span>+suger.cost());</span><br><span class="line">		</span><br><span class="line">		Drink milk=<span class="keyword">new</span> Milk(coffee);<span class="comment">//装饰</span></span><br><span class="line">		System.out.println(milk.info()+<span class="string">"---"</span>+milk.cost());</span><br><span class="line">		</span><br><span class="line">		Drink milkpuls=<span class="keyword">new</span> Milk(suger);<span class="comment">//装饰</span></span><br><span class="line">		System.out.println(milkpuls.info()+<span class="string">"---"</span>+milkpuls.cost());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象组件</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span></span>;<span class="comment">//费用</span></span><br><span class="line">	<span class="function">String <span class="title">info</span><span class="params">()</span></span>;<span class="comment">//说明</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">implements</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name=<span class="string">"原味咖啡"</span>;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象装饰类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorate</span> <span class="keyword">implements</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line">	<span class="comment">//对抽象组件的引用</span></span><br><span class="line">	<span class="keyword">private</span> Drink drink;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Decorate</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.drink=drink;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.drink.cost();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.drink.info();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">extends</span> <span class="title">Decorate</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Milk</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(drink);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.cost()+<span class="number">7</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.info()+<span class="string">"加入了牛奶"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Suger</span> <span class="keyword">extends</span> <span class="title">Decorate</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Suger</span><span class="params">(Drink drink)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(drink);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.cost()+<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.info()+<span class="string">"加入了蔗糖"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出如下</span></span><br><span class="line">原味咖啡加入了蔗糖---<span class="number">12.0</span></span><br><span class="line">原味咖啡加入了牛奶---<span class="number">17.0</span></span><br><span class="line">原味咖啡加入了蔗糖加入了牛奶---<span class="number">19.0</span></span><br></pre></td></tr></table></figure>
+<p>可以使用装饰类对具体的组件进行装饰使其完成其他方法，调用时方便。</p>
+<h2 id="Commons-io的使用"><a href="#Commons-io的使用" class="headerlink" title="Commons-io的使用"></a>Commons-io的使用</h2><p>阿帕奇网站上提供了十分方便的Commons-io，对java的IO流操作提供了便捷的API。以下列出其中常用的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件</span></span><br><span class="line"><span class="keyword">long</span> len=FileUtils.sizeOf(<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO_zs/src/edu/nj/io/CopyTxt.java"</span>));</span><br><span class="line">System.out.println(len);</span><br><span class="line"><span class="comment">//目录</span></span><br><span class="line">len = FileUtils.sizeOf(<span class="keyword">new</span> File(<span class="string">"F:\\JAVAproject\\IO"</span>));</span><br><span class="line">System.out.println(len);</span><br><span class="line"><span class="comment">//非空第一层目录</span></span><br><span class="line">Collection&lt;File&gt; files=FileUtils.listFiles(<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO"</span>), EmptyFileFilter.NOT_EMPTY, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">for</span>(File file:files) &#123;</span><br><span class="line">	System.out.println(file);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"--------------------------"</span>);</span><br><span class="line"><span class="comment">//非空子目录</span></span><br><span class="line">files=FileUtils.listFiles(<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO"</span>), EmptyFileFilter.NOT_EMPTY, DirectoryFileFilter.INSTANCE);</span><br><span class="line"><span class="keyword">for</span>(File file:files) &#123;</span><br><span class="line">	System.out.println(file.getAbsolutePath());</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"--------------------------"</span>);</span><br><span class="line"><span class="comment">//非空且后缀名为java</span></span><br><span class="line">files=FileUtils.listFiles(<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO"</span>), </span><br><span class="line">		FileFilterUtils.and(<span class="keyword">new</span> SuffixFileFilter(<span class="string">"java"</span>),EmptyFileFilter.NOT_EMPTY), DirectoryFileFilter.INSTANCE);</span><br><span class="line"><span class="keyword">for</span>(File file:files) &#123;</span><br><span class="line">	System.out.println(file.getAbsolutePath());</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"--------------------------"</span>);</span><br><span class="line"><span class="comment">//后缀名为java或class</span></span><br><span class="line">files=FileUtils.listFiles(<span class="keyword">new</span> File(<span class="string">"F:/JAVAproject/IO"</span>), </span><br><span class="line">		FileFilterUtils.or(<span class="keyword">new</span> SuffixFileFilter(<span class="string">"java"</span>),<span class="keyword">new</span> SuffixFileFilter(<span class="string">"class"</span>)), DirectoryFileFilter.INSTANCE);</span><br><span class="line"><span class="keyword">for</span>(File file:files) &#123;</span><br><span class="line">	System.out.println(file.getAbsolutePath());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//读取文件</span></span><br><span class="line">String msg=FileUtils.readFileToString(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>),<span class="string">"UTF-8"</span>);</span><br><span class="line">System.out.println(msg);</span><br><span class="line"><span class="keyword">byte</span>[] datas=FileUtils.readFileToByteArray(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>));</span><br><span class="line">System.out.println(datas.length);</span><br><span class="line"><span class="comment">//逐行读取</span></span><br><span class="line">List&lt;String&gt; msgs=FileUtils.readLines(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>),<span class="string">"UTF-8"</span>);</span><br><span class="line"><span class="keyword">for</span>(String s:msgs) &#123;</span><br><span class="line">	System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line">LineIterator it=FileUtils.lineIterator(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>),<span class="string">"UTF-8"</span>);</span><br><span class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</span><br><span class="line">	System.out.println(it.nextLine());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//写出文件</span></span><br><span class="line">FileUtils.write(<span class="keyword">new</span> File(<span class="string">"happy.txt"</span>), <span class="string">"我是不朽的\r\n"</span>,<span class="string">"UTF-8"</span>);</span><br><span class="line">FileUtils.writeStringToFile(<span class="keyword">new</span> File(<span class="string">"happy.txt"</span>), <span class="string">"永不止步\r\n"</span>,<span class="string">"UTF-8"</span>,<span class="keyword">true</span>);</span><br><span class="line">FileUtils.writeByteArrayToFile(<span class="keyword">new</span> File(<span class="string">"happy.txt"</span>), <span class="string">"永不放弃\r\n"</span>.getBytes(<span class="string">"UTF-8"</span>),<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">//写出列表</span></span><br><span class="line">List&lt;String&gt; datas=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">datas.add(<span class="string">"aaa"</span>);</span><br><span class="line">datas.add(<span class="string">"bbb"</span>);</span><br><span class="line">datas.add(<span class="string">"ccc"</span>);</span><br><span class="line">FileUtils.writeLines(<span class="keyword">new</span> File(<span class="string">"happy.txt"</span>), datas,<span class="string">"---"</span>,<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">//复制文件</span></span><br><span class="line">FileUtils.copyFile(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>), <span class="keyword">new</span> File(<span class="string">"aaa.copy.txt"</span>));</span><br><span class="line"><span class="comment">//复制文件到目录</span></span><br><span class="line">FileUtils.copyFileToDirectory(<span class="keyword">new</span> File(<span class="string">"aaa.txt"</span>), <span class="keyword">new</span> File(<span class="string">"lib"</span>));</span><br><span class="line"><span class="comment">//目录到目录</span></span><br><span class="line">FileUtils.copyDirectoryToDirectory(<span class="keyword">new</span> File(<span class="string">"lib"</span>), <span class="keyword">new</span> File(<span class="string">"aaa"</span>));</span><br><span class="line"><span class="comment">//复制目录</span></span><br><span class="line">FileUtils.copyDirectory(<span class="keyword">new</span> File(<span class="string">"lib"</span>), <span class="keyword">new</span> File(<span class="string">"aaa"</span>));</span><br><span class="line"><span class="comment">//拷贝URL</span></span><br><span class="line">String u=<span class="string">"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1447299376,2290556778&amp;fm=27&amp;gp=0.jpg"</span>;</span><br><span class="line">FileUtils.copyURLToFile(<span class="keyword">new</span> URL(u), <span class="keyword">new</span> File(<span class="string">"bilbil.png"</span>));</span><br><span class="line">String datas=IOUtils.toString(<span class="keyword">new</span> URL(<span class="string">"http://www.baidu.com"</span>), <span class="string">"UTF-8"</span>);</span><br><span class="line">System.out.println(datas);</span><br></pre></td></tr></table></figure>
+<p>看上去代码太多，其实所有的方法都可以做到见名知意，十分方便的实现了文件的查找、读取、写出以及拷贝。</p>
+
       
 
       
@@ -176,16 +225,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/15/Java-IO（包含Commons-io的使用）/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/15/Java-IO（包含Commons-io的使用）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/14/Java集合类（容器)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java集合类（容器)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -200,476 +308,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java集合类（容器)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/Java集合类（容器)/">Java集合类（容器)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/14/Java集合类（容器)/" class="archive-article-date">
-  	<time datetime="2019-04-14T13:35:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Collections集合类"><a href="#Collections集合类" class="headerlink" title="Collections集合类"></a>Collections集合类</h1><p>集合存放在java.util包中，分为set(集）、list(列表）和map(映射)三类<br>详细地分享了集合类的使用。</p>
-        
-          <a class="article-more-a" href="/2019/04/14/Java集合类（容器)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/14/Java集合类（容器)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IO流相关知识"><span class="toc-number">1.</span> <span class="toc-text">IO流相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#File类"><span class="toc-number">1.1.</span> <span class="toc-text">File类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流的操作"><span class="toc-number">1.2.</span> <span class="toc-text">流的操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰设计模式浅谈"><span class="toc-number">1.3.</span> <span class="toc-text">装饰设计模式浅谈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Commons-io的使用"><span class="toc-number">1.4.</span> <span class="toc-text">Commons-io的使用</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-Java知识点总结（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/05/Java知识点总结（三）/">Java知识点总结（三）</a>
-    </h1>
   
 
-        
-        <a href="/2019/04/05/Java知识点总结（三）/" class="archive-article-date">
-  	<time datetime="2019-04-05T13:47:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java知识点总结（三）"><a href="#Java知识点总结（三）" class="headerlink" title="Java知识点总结（三）"></a>Java知识点总结（三）</h1>
-        
-          <a class="article-more-a" href="/2019/04/05/Java知识点总结（三）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/05/Java知识点总结（三）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java知识点总结（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/04/Java知识点总结（二）/">Java知识点总结（二）</a>
-    </h1>
   
 
-        
-        <a href="/2019/04/04/Java知识点总结（二）/" class="archive-article-date">
-  	<time datetime="2019-04-04T13:29:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java知识点总结（二）"><a href="#Java知识点总结（二）" class="headerlink" title="Java知识点总结（二）"></a>Java知识点总结（二）</h1>
-        
-          <a class="article-more-a" href="/2019/04/04/Java知识点总结（二）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/04/Java知识点总结（二）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java知识点总结（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/31/Java知识点总结（一）/">Java知识点总结（一）</a>
-    </h1>
   
 
-        
-        <a href="/2019/03/31/Java知识点总结（一）/" class="archive-article-date">
-  	<time datetime="2019-03-31T14:14:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java知识点总结（一）"><a href="#Java知识点总结（一）" class="headerlink" title="Java知识点总结（一）"></a>Java知识点总结（一）</h1>
-        
-          <a class="article-more-a" href="/2019/03/31/Java知识点总结（一）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/31/Java知识点总结（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-飞机小游戏总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/28/飞机小游戏总结/">飞机小游戏总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/28/飞机小游戏总结/" class="archive-article-date">
-  	<time datetime="2019-03-28T05:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="小飞机游戏"><a href="#小飞机游戏" class="headerlink" title="小飞机游戏"></a>小飞机游戏</h1><h2 id="使用最基础知识编写，上传仅用于学习交流（复习知识）"><a href="#使用最基础知识编写，上传仅用于学习交流（复习知识）" class="headerlink" title="使用最基础知识编写，上传仅用于学习交流（复习知识）"></a>使用最基础知识编写，上传仅用于学习交流（复习知识）</h2>
-        
-          <a class="article-more-a" href="/2019/03/28/飞机小游戏总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/28/飞机小游戏总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-测试第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/15/测试第一篇博客文章/">测试第一篇博客文章</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/15/测试第一篇博客文章/" class="archive-article-date">
-  	<time datetime="2019-03-15T08:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
-<hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>内容</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>啦啦啦啦啦</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/15/测试第一篇博客文章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2019-03-15T08:41:06.794Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/15/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -692,8 +356,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
